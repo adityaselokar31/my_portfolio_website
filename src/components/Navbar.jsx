@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaFilePdf } from 'react-icons/fa';
-import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,10 +23,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDownloadClick = () => {
-    toast.success('✅ Download started');
-  };
-
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Education', href: '#education' },
@@ -38,9 +33,8 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-70 backdrop-blur-sm shadow-md">
-      <Toaster position="bottom-center" />
-      
       <div className="w-full px-4 py-4 flex justify-between items-center">
+        {/* Logo */}
         <h1 className="text-3xl font-extrabold text-yellow-400">Aditya Selokar</h1>
 
         {/* Desktop Nav */}
@@ -56,8 +50,8 @@ const Navbar = () => {
           ))}
           <a
             href="/pdf/Aditya_Selokar_Resume.pdf"
-            download
-            onClick={handleDownloadClick}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300 transition flex items-center gap-2"
           >
             <FaFilePdf /> Resume
@@ -89,11 +83,9 @@ const Navbar = () => {
 
           <a
             href="/pdf/Aditya_Selokar_Resume.pdf"
-            download
-            onClick={() => {
-              handleDownloadClick();
-              setMenuOpen(false);
-            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
             className="inline-block text-sm bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300 transition flex items-center justify-center gap-2"
           >
             <FaFilePdf /> Resume
