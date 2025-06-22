@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 const socialLinks = [
   {
-    href: "mailto:adityaselokar005@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=adityaselokar005@gmail.com",
     icon: <FaEnvelope />,
     bg: "bg-[#EA4335]",
     ring: "hover:ring-red-400",
@@ -44,8 +44,7 @@ const Contact = () => {
       viewport={{ once: true, amount: 0.2 }}
     >
       <div className="max-w-3xl mx-auto text-center">
-
-        {/* 🟡 Hover-Bounce Heading */}
+        {/* 🟡 Heading */}
         <motion.h2
           className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500 mb-3"
           whileHover={{ y: -8 }}
@@ -54,7 +53,7 @@ const Contact = () => {
           Let’s Connect
         </motion.h2>
 
-        {/* 🟡 Hover-Scale Subtext */}
+        {/* 🟡 Subtext */}
         <motion.p
           className="text-lg text-gray-300 mb-10"
           whileHover={{ scale: 1.05 }}
@@ -88,7 +87,9 @@ const Contact = () => {
           <p>
             📧{" "}
             <a
-              href="mailto:adityaselokar005@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=adityaselokar005@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-blue-400 underline hover:text-blue-300"
             >
               adityaselokar005@gmail.com
