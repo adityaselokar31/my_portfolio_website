@@ -9,14 +9,14 @@ const projects = [
     description: 'Responsive weather site built with HTML/CSS/JS, fetching live data from OpenWeatherMap API.',
     images: ['/projects/weather1.jpg', '/projects/weather2.jpg'],
     github: 'https://github.com/adityaselokar31/weather_check',
-    live: 'https://weather-check-1jll.vercel.app/',
+    live: 'https://weather-check-omega.vercel.app/',
   },
   {
     title: 'Age Calculator',
     description: 'A simple age calculator built using HTML, CSS, and JavaScript that instantly calculates age from birthdate.',
     images: ['/projects/age1.jpg', '/projects/age2.jpg'],
     github: 'https://github.com/adityaselokar31/age_calculator',
-    live: 'https://age-calculator-xi-five.vercel.app/',
+    live: 'https://age-calculator-lemon-eight.vercel.app/',
   },
   {
     title: 'Amazon Clone UI',
