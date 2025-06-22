@@ -51,7 +51,10 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black text-white relative">
-      <h2 className="text-3xl font-bold text-yellow-400 text-center mb-10">Technical Skills</h2>
+    <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500">
+  Technical Skills
+</h2>
+
 
       {/* Arrows */}
       <div className="absolute left-2 top-[50%] transform -translate-y-1/2 z-20 hidden md:flex animate-pulse">
