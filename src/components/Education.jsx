@@ -9,32 +9,48 @@ const Education = () => {
   return (
     <motion.section
       id="education"
-      className="p-10 max-w-5xl mx-auto text-center relative z-10"
+      className="py-20 px-6 max-w-5xl mx-auto text-center relative z-10"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
     >
-      <h2 className="text-3xl font-bold text-yellow-400 mb-8">Education & Certification</h2>
+      <h2 className="text-4xl font-bold text-yellow-400 mb-10">
+        Education & Certification
+      </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {/* College Education */}
-        <div className="bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-yellow-400/30 transition-shadow">
+        {/* Degree Card */}
+        <motion.div
+          className="bg-gray-900/70 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-yellow-400/40 transition-transform transform scale-[0.97] hover:scale-100"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h3 className="text-xl font-semibold text-white">
             Yeshwantrao Chavan College of Engineering, Nagpur
           </h3>
           <p className="text-gray-400 mt-2">B.Tech in Mechanical Engineering</p>
           <p className="text-sm text-gray-500">Nov 2020 – June 2024</p>
-          <button
-            onClick={() => setShowDegree(true)}
-            className="inline-flex items-center gap-2 mt-4 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
-          >
-            View Degree <FaExternalLinkAlt />
-          </button>
-        </div>
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setShowDegree(true)}
+              className="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
+            >
+              View Degree <FaExternalLinkAlt />
+            </button>
+          </div>
+        </motion.div>
 
-        {/* Certification Course */}
-        <div className="bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-yellow-400/30 transition-shadow">
+        {/* Certificate Card */}
+        <motion.div
+          className="bg-gray-900/70 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-yellow-400/40 transition-transform transform scale-[0.97] hover:scale-100"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h3 className="text-xl font-semibold text-white">
             Full Stack Java Developer Certification
           </h3>
@@ -46,25 +62,34 @@ const Education = () => {
               Spring Boot, React.js, MySQL, REST APIs, Docker, MVC Architecture
             </span>
           </p>
-          <button
-            onClick={() => setShowCertificate(true)}
-            className="inline-flex items-center gap-2 mt-4 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
-          >
-            View Certificate <FaExternalLinkAlt />
-          </button>
-        </div>
+          <div className="mt-4 flex justify-center">
+            <button
+              onClick={() => setShowCertificate(true)}
+              className="inline-flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300 transition"
+            >
+              View Certificate <FaExternalLinkAlt />
+            </button>
+          </div>
+        </motion.div>
       </div>
 
       {/* Certificate Modal */}
       <AnimatePresence>
         {showCertificate && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setShowCertificate(false)}
           >
-            <div className="relative w-[90%] max-w-4xl h-[80vh] bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-yellow-400">
+            <motion.div
+              className="relative w-[90%] max-w-4xl h-[80vh] bg-gray-900 rounded-lg border border-yellow-400 overflow-hidden shadow-lg"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setShowCertificate(false)}
                 className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-300 text-xl z-10"
@@ -76,7 +101,7 @@ const Education = () => {
                 title="Certificate"
                 className="w-full h-full"
               ></iframe>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -85,12 +110,19 @@ const Education = () => {
       <AnimatePresence>
         {showDegree && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setShowDegree(false)}
           >
-            <div className="relative w-[90%] max-w-4xl h-[80vh] bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-yellow-400">
+            <motion.div
+              className="relative w-[90%] max-w-4xl h-[80vh] bg-gray-900 rounded-lg border border-yellow-400 overflow-hidden shadow-lg"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 onClick={() => setShowDegree(false)}
                 className="absolute top-3 right-3 text-yellow-400 hover:text-yellow-300 text-xl z-10"
@@ -102,7 +134,7 @@ const Education = () => {
                 title="Degree"
                 className="w-full h-full"
               ></iframe>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
