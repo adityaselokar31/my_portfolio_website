@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -25,11 +25,11 @@ const Skills = () => {
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
   };
 
   const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
   };
 
   // Auto-scroll once on mount
@@ -50,27 +50,45 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black text-white relative">
-    <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500">
-  Technical Skills
-</h2>
+    <section id="skills" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black text-white relative overflow-hidden">
+      <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-500">
+        Technical Skills
+      </h2>
 
-
-      {/* Arrows */}
-      <div className="absolute left-2 top-[50%] transform -translate-y-1/2 z-20 hidden md:flex animate-pulse">
-        <button onClick={scrollLeft} className="bg-gray-800 text-yellow-400 p-3 rounded-full hover:bg-yellow-400 hover:text-black transition">
+      {/* Arrow Controls */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20 flex animate-pulse md:flex"
+      >
+        <button
+          onClick={scrollLeft}
+          className="bg-gray-800 text-yellow-400 p-3 rounded-full hover:bg-yellow-400 hover:text-black transition"
+        >
           <FaArrowLeft />
         </button>
-      </div>
-      <div className="absolute right-2 top-[50%] transform -translate-y-1/2 z-20 hidden md:flex animate-pulse">
-        <button onClick={scrollRight} className="bg-gray-800 text-yellow-400 p-3 rounded-full hover:bg-yellow-400 hover:text-black transition">
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 flex animate-pulse md:flex"
+      >
+        <button
+          onClick={scrollRight}
+          className="bg-gray-800 text-yellow-400 p-3 rounded-full hover:bg-yellow-400 hover:text-black transition"
+        >
           <FaArrowRight />
         </button>
-      </div>
+      </motion.div>
 
       {/* Scrollable Skills Row */}
-      <div ref={scrollRef} className="w-full overflow-x-auto overflow-y-hidden no-scrollbar px-4">
-        <div className="flex flex-nowrap gap-10 snap-x snap-mandatory scroll-smooth">
+      <div ref={scrollRef} className="w-full overflow-x-auto overflow-y-hidden no-scrollbar px-4 scroll-smooth">
+        <div className="flex flex-nowrap gap-10 snap-x snap-mandatory">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
@@ -78,7 +96,7 @@ const Skills = () => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05, ease: 'easeOut' }}
+              transition={{ duration: 0.3, delay: index * 0.02, ease: 'easeOut' }}
               className={`group relative flex flex-col items-center justify-center min-w-[120px] snap-start transition-all hover:scale-110 duration-300 ${skill.glow}`}
             >
               {/* Glowing Spin Ring */}
