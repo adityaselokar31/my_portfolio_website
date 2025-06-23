@@ -1,21 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import profileImage from '../assets/profile.jpg';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Hero = () => {
   const [blink, setBlink] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setBlink(false), 2100); // After typewriter finishes
+    const timer = setTimeout(() => setBlink(false), 2100);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleDownload = () => {
+    toast.success('✅ Download started');
+  };
 
   return (
     <section
       id="hero"
       className="min-h-screen flex flex-col md:flex-row items-center justify-center text-center md:text-left px-6 gap-10 bg-black text-white"
     >
-      {/* 🔁 Rotating Ring around Image */}
+      {/* ✅ Toaster with top-center position and slide-down effect */}
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: '#1f2937', // Tailwind gray-800
+            color: '#facc15', // Tailwind yellow-400
+            fontWeight: 'bold',
+            border: '1px solid #facc15',
+          },
+        }}
+      />
+
+      {/* Rotating Ring around Image */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -34,7 +53,7 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* 👤 Hero Text */}
+      {/* Hero Text */}
       <motion.div
         initial={{ x: 100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -42,7 +61,7 @@ const Hero = () => {
         viewport={{ once: true }}
         className="max-w-xl flex flex-col items-center md:items-start"
       >
-        {/* ✅ Typewriter Heading */}
+        {/* Typewriter Heading */}
         <motion.h1
           className={`text-3xl md:text-5xl font-bold mb-4 text-yellow-300 font-sans whitespace-nowrap overflow-hidden animate-typing 
             ${blink ? 'border-r-4 border-yellow-300' : ''}`}
@@ -53,7 +72,6 @@ const Hero = () => {
           Hi, I'm Aditya Selokar
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           className="text-lg md:text-xl text-gray-200 mb-6 text-center md:text-left"
           initial={{ opacity: 0, y: 20 }}
@@ -67,6 +85,7 @@ const Hero = () => {
         <motion.a
           href="/pdf/Aditya_Selokar_Resume.pdf"
           download
+          onClick={handleDownload}
           className="text-sm bg-yellow-400 text-black px-5 py-2 rounded hover:bg-yellow-300 transition font-semibold"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
